@@ -26,6 +26,6 @@ import { JwtService } from '@nestjs/jwt';
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-      consumer.apply(AuthMiddleware).forRoutes('assets', 'portfolio');
+      consumer.apply(AuthMiddleware).forRoutes('assets', 'portfolio', 'price');
   }
 }
