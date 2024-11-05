@@ -13,10 +13,5 @@ import { JwtService } from '@nestjs/jwt';
   controllers: [AssetsController],
     providers: [AssetsService, PriceService, JwtService],
 })
-export class AssetsModule implements NestModule {
-    configure(consumer: MiddlewareConsumer) {
-        consumer
-            .apply(AuthMiddleware) // Apply the AuthMiddleware
-            .forRoutes(AssetsController); // Protect all routes in the AssetsController
-    }
+export class AssetsModule {
 }

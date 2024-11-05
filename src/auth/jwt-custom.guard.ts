@@ -19,7 +19,7 @@ export class JwtCustomGuard implements CanActivate {
         }
 
         try {
-            const payload = jwt.verify(token, jwtSecret); // jwtSecret is now guaranteed to be a string
+            const payload = jwt.verify(token, jwtSecret);
             request['user'] = payload;
             return true;
         } catch (err) {

@@ -20,17 +20,4 @@ export class AuthController {
               throw new UnauthorizedException('Invalid Privy token');
           }
       }
-
-  // async authenticateUser(@Body() body: { privyToken: string; email: string }) {
-  //   const { privyToken, email } = body;
-  
-  //   // Call AuthService to exchange Privy.io JWT for Metaversal JWT
-  //   const metaversalJwt = await this.authService.authenticate(privyToken, email);
-  
-  //   if (!metaversalJwt) {
-  //     throw new UnauthorizedException('Invalid Privy.io token');
-  //   }
-  
-  //   return { token: metaversalJwt, email };
-  // }
 }

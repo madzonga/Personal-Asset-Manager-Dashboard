@@ -17,9 +17,7 @@ export class AuthMiddleware implements NestMiddleware {
       req.user = payload; // Attach the payload to the request object
       next();
     } catch (err) {
-        console.log('-------- err ---------', err);
-
-      return res.status(401).send('Unauthorized');
+      return res.status(401).send(`Unauthorized: ${err}`);
     }
   }
 }
