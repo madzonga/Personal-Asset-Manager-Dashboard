@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: my_postgres_db
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"  # Maps the container's 5432 port to the host's 5432 port
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Persists data to avoid losing it on container restart
+    networks:
+      - my_network
+
+  adminer:
+    image: adminer:latest
+    container_name: adminer
+    environment:
+      ADMINER_DEFAULT_SERVER: postgres  # Links Adminer to the PostgreSQL service by name
+    ports:
+      - "8080:8080"  # Access Adminer at http://localhost:8080
+    networks:
+      - my_network
+
+volumes:
+  postgres_data:
+
+networks:
+  my_network:
