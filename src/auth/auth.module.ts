@@ -11,7 +11,7 @@ import { AuthController } from './auth.controller';
     ConfigModule, // Optional: If you want to use ConfigModule for environment variables
     JwtModule.register({
       secret: process.env.JWT_SECRET || 'your_secret_key', // Provide a secret key
-      signOptions: { expiresIn: '3060s' }, // Optional: Set token expiration
+      signOptions: { expiresIn: process.env.JWT_EXPIRE_TIME || '1h' }, // Optional: Set token expiration
     }),
   ],
   controllers: [AuthController],
