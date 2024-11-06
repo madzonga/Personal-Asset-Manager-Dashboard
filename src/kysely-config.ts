@@ -34,11 +34,11 @@ export interface DatabaseSchema {
 const db = new Kysely<DatabaseSchema>({
   dialect: new PostgresDialect({
     pool: new Pool({
-      host: 'localhost',
-      port: 5432,
-      database: 'mydatabase', // Your database name
-      user: 'myuser',         // Your database user
-      password: 'mypassword', // Your database password
+      host: process.env.DB_HOST,
+      port:  parseInt(process.env.DB_PORT || "5432"),
+      database:  process.env.DB_NAME,
+      user:  process.env.DB_USER,
+      password:  process.env.DB_PASSWORD, 
     }),
   }),
 });
