@@ -1,10 +1,11 @@
 import { Injectable, NestInterceptor, ExecutionContext, CallHandler, UnauthorizedException } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import * as jwt from 'jsonwebtoken';
+import { UserTable } from '../user/user.model';
 
 @Injectable()
 export class AuthInterceptor implements NestInterceptor {
-    intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+    intercept(context: ExecutionContext, next: CallHandler): Observable<UserTable> {
         const request = context.switchToHttp().getRequest();
         const authHeader = request.headers['authorization'];
         const token = authHeader && authHeader.split(' ')[1];
@@ -22,8 +23,8 @@ export class AuthInterceptor implements NestInterceptor {
         try {
             const payload = jwt.verify(token, jwtSecret);
             request['user'] = payload;
-        } catch (err) {
-            throw new UnauthorizedException('Invalid token');
+        } catch (error) {
+            throw new UnauthorizedException(`Invalid token: ${error}`);
         }
 
         return next.handle();
