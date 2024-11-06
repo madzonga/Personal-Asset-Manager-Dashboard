@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // migrations/2024xx_create_tables.ts
 import { Kysely, Migration, sql } from 'kysely';
 
 export default class CreateTablesMigration implements Migration {
-  async up(db: Kysely<unknown>): Promise<void> {
+  async up(db: Kysely<any>): Promise<void> {
     await db.schema
       .createTable('users')
       .addColumn('id', 'serial', (col) => col.primaryKey())
@@ -37,7 +38,7 @@ export default class CreateTablesMigration implements Migration {
       .execute();
   }
 
-  async down(db: Kysely<unknown>): Promise<void> {
+  async down(db: Kysely<any>): Promise<void> {
     await db.schema.dropTable('asset_daily_prices').execute();
     await db.schema.dropTable('assets').execute();
     await db.schema.dropTable('users').execute();
