@@ -11,6 +11,10 @@ export class AuthService {
     ) {}
 
     async authenticateUser(privyToken: string, email: string): Promise<string> {
+
+        // THIS WOULD'VE BEEN THE PRIVY VALIDATION STEP BUT THE npm install @privy-io/server-auth@latest LIBRARY
+        // WAS NOT DOWNLOADABLE SO I SKIPPED IT
+
         // Decode the Privy token to extract the user identifier (`sub`)
         const decodedToken = jwt.decode(privyToken);
         if (!decodedToken || typeof decodedToken === 'string' || !decodedToken.sub) {
