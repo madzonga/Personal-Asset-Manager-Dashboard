@@ -19,13 +19,13 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '20'  # Specify the Node.js version
+        node-version: '20' 
 
     - name: Install dependencies
       run: npm install
-      
+
     - name: Build project
-      run: npm run build  # Assumes you have a build script in your package.json
+      run: npm run build 
 
     - name: Run tests
-      run: npm test  # Assumes you have tests defined in your package.json
+      run: npm test 
