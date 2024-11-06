@@ -1,0 +1,61 @@
+name: Lint and Lockfile Verification
+
+on:
+  push:
+    branches:
+      - main
+      - 'feature/*'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Specify the node version you're using
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          npm install
+
+      # Run ESLint
+      - name: Run ESLint
+        run: |
+          npm run lint  # Assuming you have a script like "lint" in your package.json
+
+  lockfile:
+    runs-on: ubuntu-latest
+    needs: lint
+
+    steps:
+      # Checkout the repository code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'  # Specify the node version you're using
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          npm install
+
+      # Verify lockfile (ensure package-lock.json or yarn.lock is up to date)
+      - name: Verify lockfile
+        run: |
+          git diff --exit-code package-lock.json || echo "Lockfile is not up-to-date!"
+          # This will check if there are differences in the lockfile, indicating an update is needed

@@ -22,8 +22,8 @@ export class JwtCustomGuard implements CanActivate {
             const payload = jwt.verify(token, jwtSecret);
             request['user'] = payload;
             return true;
-        } catch (err) {
-            throw new UnauthorizedException('Invalid token');
+        } catch (error) {
+            throw new UnauthorizedException(`Invalid token: ${error}`);
         }
     }
 }

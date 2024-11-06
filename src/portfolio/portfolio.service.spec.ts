@@ -1,6 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { PortfolioService } from './portfolio.service';
 import db from '../kysely-config'; // Adjust the import path to match your project structure
+import { AssetDailyPriceTable } from '../price/price.model';
+import { AssetTable } from '../assets/assets.model';
 
 // Mocking the database interactions
 jest.mock('../kysely-config', () => ({
@@ -69,7 +71,7 @@ describe('PortfolioService', () => {
             ];
 
             // Mocking the asset prices data (empty in this case)
-            const assetPrices: any[] = [];
+            const assetPrices: AssetDailyPriceTable[] = [];
 
             // Mock the database calls
             (db.selectFrom as jest.Mock).mockImplementationOnce(() => ({
@@ -99,7 +101,7 @@ describe('PortfolioService', () => {
             const userId = 1;
 
             // Mocking the assets data (empty)
-            const assets: any[] = [];
+            const assets: AssetTable[] = [];
 
             // Mocking the asset prices data
             const assetPrices = [
@@ -163,7 +165,7 @@ describe('PortfolioService', () => {
             const assetId = 1;
 
             // Mocking no price history data
-            const priceHistory: any[] = [];
+            const priceHistory: AssetDailyPriceTable[] = [];
 
             // Mock the database call for asset price history
             (db.selectFrom as jest.Mock).mockImplementationOnce(() => ({

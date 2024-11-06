@@ -17,7 +17,7 @@ export class AuthController {
       const metaversalJwt = await this.authService.authenticateUser(privyToken, email);
       return { token: metaversalJwt, email };
     } catch (error) {
-      throw new UnauthorizedException('Invalid Privy token');
+      throw new UnauthorizedException(`Invalid Privy token: ${error}`);
     }
   }
 }

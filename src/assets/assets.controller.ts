@@ -4,6 +4,7 @@ import { JoiValidationPipe } from '../common/pipes/joi-validation.pipe';
 import { AddAssetSchema } from './schemas/add-asset.schema';
 import { RemoveAssetSchema } from './schemas/remove-asset.schema';
 import { ListAssetsSchema } from './schemas/list-assets.schema';
+import { AssetTable } from './assets.model';
 
 @Controller('assets')
 export class AssetsController {
@@ -12,7 +13,7 @@ export class AssetsController {
   // 1. Add Asset
   @Post()
   @UsePipes(new JoiValidationPipe(AddAssetSchema))
-  async addAsset(@Body() assetData: any) {
+  async addAsset(@Body() assetData: AssetTable) {
     return this.assetsService.addAsset(assetData);
   }
 
