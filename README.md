@@ -21,16 +21,28 @@ Before you start, ensure you have the following installed:
 Follow the steps below to set up the project locally:
 1.	Clone the repository:
     Clone the repository to your local machine using Git:
-    - `git clone git@github.com:madzonga/personal-asset-manager-dashboard.git`
+    - ```git clone git@github.com:madzonga/personal-asset-manager-dashboard.git```
 
 2.	Navigate to the project directory:
     Change to the project directory:
-    - `cd personal-asset-manager-dashboard`
+    - ```cd personal-asset-manager-dashboard```
 
 3.	Install dependencies:
     Install the project dependencies using npm:
-    - `npm install`
+    - ```npm install```
     This will install all the necessary dependencies listed in the package.json file.
+
+4. To setup the front end, clone the following repo:
+    - ```https://github.com/metaversal-gg/metaversal-hr-frontend-privy```
+    Follow the instructions in the README on how to set it up.
+
+## Authentication
+
+Overview
+
+This application implements user authentication using Privy.io. The front-end (FE) app connects to the Privy.io login widget, which allows users to obtain a Privy Access Token. This token is then exchanged for a backend API issued JWT. Which is what you will use to access the protected endpoints.
+
+![Authentication Flow](auth-flow.png)
 
 ## Database Setup
 
@@ -38,7 +50,7 @@ To set up the PostgreSQL database and Adminer, follow these steps:
 1.	Run the Database with Docker Compose:
     The project includes a docker-compose.yml file configured to set up a PostgreSQL database and an Adminer UI.
     Start the database by running:
-    - `docker-compose up -d`
+    - ```docker-compose up -d```
 
     This command will:
     -	Spin up a PostgreSQL container accessible on localhost:5432.
@@ -59,19 +71,19 @@ To set up the PostgreSQL database and Adminer, follow these steps:
 
 4.	Run Migrations:
     If your application includes database migrations, run the migrations to set up the necessary tables:
-    - `npm run migrate`
+    - ```npm run migrate```
 
 ## Running the Application
 
 After setting up the project, you can run it locally by following the instructions below.
 1.	Start the development server:
     To run the application in development mode, use the following command:
-    - `npm run start:dev`
+    - ```npm run start:dev```
     This will start the server and watch for file changes. The application should be available at http://localhost:3000 (or another port if specified).
 
 2.	Access the application:
     Open your browser and go to:
-    - `http://localhost:3000`
+    - ```http://localhost:3000```
     You should see the app running locally.
 
 ## Running Tests
@@ -79,13 +91,40 @@ After setting up the project, you can run it locally by following the instructio
 To ensure that everything works correctly, you can run tests locally.
 1.	Run unit tests:
     Use the following command to run the unit tests using Jest (or your chosen test framework):
-    - `npm test`
+    - ```npm test```
     This will run the tests defined in the project and output the results to the console.
 
 2.	Run linting:
     To check the code quality and ensure it adheres to the style guide, run:
-    - `npm run lint`
+    - ```npm run lint```
     This will run ESLint (if configured) and highlight any linting issues in the code.
+
+## API Documentation with Swagger
+
+This application provides an interactive API documentation using **Swagger UI**.
+
+### How to View the Swagger API Docs
+
+1. **Start the application**:
+   - Ensure you have completed the setup and have started the application by running:
+
+     ```bash
+     npm run start
+     ```
+
+2. **Access the Swagger UI**:
+   - Once the application is running, navigate to the following URL in your web browser:
+
+     ```
+     http://localhost:3000/api
+     ```
+
+   - This will load the Swagger UI, where you can view and interact with all the available API endpoints.
+
+### Example Swagger Documentation Features:
+- **List of all endpoints**: A comprehensive list of all available API endpoints.
+- **Request parameters and body**: Automatically documented request parameters, query parameters, and body.
+- **Response types**: Clear descriptions of the possible responses for each endpoint, including status codes and response bodies.
 
 ## GitHub Actions
 
